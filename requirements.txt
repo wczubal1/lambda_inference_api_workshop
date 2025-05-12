@@ -1,0 +1,8 @@
+openai
+python-dotenv
+rich
+pydantic
+requests
+typer
+loguru
+pydantic-settings
