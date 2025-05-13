@@ -6,6 +6,8 @@ We use Lambda's Inference API with function calling to support this functionalit
 ## Prerequisites
 - Lambda API Key (you can create one in the [Lambda Cloud Dashboard](https://cloud.lambda.ai))
 
+## Installation
+
 ### Option 1: Run locally with Virtual Environment
 
 1. Clone the repository:
