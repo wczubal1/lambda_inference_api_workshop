@@ -57,107 +57,119 @@ When handling user queries:
     def chat(self, user_input: str) -> None:
         """Process a chat message and handle both function calls and general queries."""
         self.messages.append({"role": "user", "content": user_input})
-        
-        while True:
-            try:
-                response = self.client.chat.completions.create(
+
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=self.messages,
+                tools=[{"type": "function", "function": func} for func in LAMBDA_CLOUD_FUNCTIONS],
+                tool_choice="auto"  # Let the model decide whether to use functions or not
+            )
+
+            if not response.choices:
+                raise ValueError("No response received from the model")
+
+            message = response.choices[0].message
+            if not message:
+                raise ValueError("Empty message received from the model")
+
+            self.messages.append({
+                "role": "assistant",
+                "content": message.content
+            })
+
+            # Handle function calls if present
+            if hasattr(message, 'tool_calls') and message.tool_calls:
+                
+                # assuming only one tool call for now
+                tool_call = message.tool_calls[0]
+                function_name = tool_call.function.name
+                arguments = eval(tool_call.function.arguments)
+
+                console.print(Panel(
+                    f"[yellow]Executing function: {function_name} with arguments: {arguments}[/yellow]",
+                    title="Function Call"
+                ))
+
+                try:
+                    result = execute_function_call(function_name, arguments)
+                    formatted_result = self._format_function_result(function_name, result)
+                    self.messages.append({
+                        "role": "tool",
+                        "tool_call_id": tool_call.id,
+                        "name": function_name,
+                        "content": formatted_result
+                    })
+                    console.print(Panel(
+                        Markdown(formatted_result),
+                        title="Function Result"
+                    ))
+                except Exception as e:
+                    error_msg = f"Error executing {function_name}: {str(e)}"
+                    console.print(Panel(
+                        f"[red]{error_msg}[/red]",
+                        title="Error"
+                    ))
+                    self.messages.append({
+                        "role": "tool",
+                        "tool_call_id": tool_call.id,
+                        "name": function_name,
+                        "content": error_msg
+                    })
+
+                self.messages.append({
+                    "role": "user",
+                    "content": "Take the data from the tool call and use it to answer the user's question in plain text. If the tool call response is an empty list or no data found, inform the user that there is no data. This is a valid response from the API. For the list of available on-demand instances, only list those instances where the list of regions with available capacity is not empty."
+                })
+
+                # Generate assistant's response
+                assistant_response = self.client.chat.completions.create(
                     model=self.model,
                     messages=self.messages,
-                    tools=[{"type": "function", "function": func} for func in LAMBDA_CLOUD_FUNCTIONS],
-                    tool_choice="auto"  # Let the model decide whether to use functions or not
                 )
-                
-                if not response.choices:
-                    raise ValueError("No response received from the model")
-                
-                message = response.choices[0].message
-                if not message:
-                    raise ValueError("Empty message received from the model")
-                
-                # self.messages.append(message)
+
+                assistant_message_text = assistant_response.choices[0].message.content
                 self.messages.append({
                     "role": "assistant",
-                    "content": message.content
+                    "content": assistant_message_text
                 })
-                
-                # Handle function calls if present
-                if hasattr(message, 'tool_calls') and message.tool_calls:
-                    for tool_call in message.tool_calls:
-                        function_name = tool_call.function.name
-                        arguments = eval(tool_call.function.arguments)
-
-                        console.print(Panel(
-                            f"[yellow]Executing function: {function_name} with arguments: {arguments}[/yellow]",
-                            title="Function Call"
-                        ))
-
-                        try:
-                            result = execute_function_call(function_name, arguments)
-                            formatted_result = self._format_function_result(function_name, result)
-                            
-                            self.messages.append({
-                                "role": "tool",
-                                "tool_call_id": tool_call.id,
-                                "name": function_name,
-                                "content": formatted_result
-                            })
-                            
-                            console.print(Panel(
-                                Markdown(formatted_result),
-                                title="Function Result"
-                            ))
-                        except Exception as e:
-                            error_msg = f"Error executing {function_name}: {str(e)}"
-                            console.print(Panel(
-                                f"[red]{error_msg}[/red]",
-                                title="Error"
-                            ))
-                            self.messages.append({
-                                "role": "tool",
-                                "tool_call_id": tool_call.id,
-                                "name": function_name,
-                                "content": error_msg
-                            })
-                    continue
-                
-                # Display assistant's response (for both function results and general queries)
-                if hasattr(message, 'content') and message.content:
-                    console.print(Panel(
-                        Markdown(message.content),
-                        title="Assistant"
-                    ))
-                else:
-                    console.print(Panel(
-                        "[yellow]I apologize, but I couldn't generate a proper response. Please try rephrasing your question.[/yellow]",
-                        title="Assistant"
-                    ))
-                break
-                
-            except Exception as e:
-                logger.error(f"Chat error: {str(e)}")
                 console.print(Panel(
-                    f"[red]I apologize, but I encountered an error while processing your request. Please try again.[/red]",
-                    title="Error"
+                    Markdown(assistant_message_text),
+                    title="Assistant"
                 ))
-                # Add a system message to help recover from the error
-                self.messages.append({
-                    "role": "system",
-                    "content": "The previous response encountered an error. Please continue the conversation naturally."
-                })
-                break
+
+            else:
+                console.print(Panel(
+                    Markdown(message.content),
+                    title="Assistant"
+                ))
+
+        except Exception as e:
+            logger.error(f"Chat error: {str(e)}")
+            console.print(Panel(
+                f"[red]I apologize, but I encountered an error while processing your request. Please try again.[/red]",
+                title="Error"
+            ))
+            # Add a system message to help recover from the error
+            self.messages.append({
+                "role": "system",
+                "content": "The previous response encountered an error. Please continue the conversation naturally."
+            })
+
 
 def start_chat():
     """Start an interactive chat session."""
     chat = LambdaChat()
     console.print(Panel(
         "[bold blue]Welcome to Lambda AI Assistant![/bold blue]\n"
+        f"I am using the {settings.DEFAULT_MODEL} model.\n"
         "I can help you with:\n"
         "1. Managing your Lambda Cloud instances\n"
         "2. Answering questions about Lambda AI\n"
         "Type 'exit' or 'quit' to end the session.",
         title="Lambda AI Assistant"
     ))
-    
+
     while True:
         try:
             user_input = console.input("\n[bold green]You:[/bold green] ")

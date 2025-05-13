@@ -31,7 +31,7 @@ LAMBDA_INFERENCE_API_KEY=your_lambda_api_key
 LAMBDA_CLOUD_API_KEY=your_lambda_api_key
 LAMBDA_INFERENCE_API_BASE=https://api.lambda.ai/v1
 LAMBDA_CLOUD_API_BASE=https://cloud.lambda.ai/api/v1
-DEFAULT_MODEL=llama-4-maverick-17b-128e-instruct-fp8
+DEFAULT_MODEL=llama-4-scout
 LOG_LEVEL=INFO
 ```
 

@@ -17,10 +17,11 @@ class Settings(BaseSettings):
         env="LAMBDA_CLOUD_API_BASE"
     )
     DEFAULT_MODEL: str = Field(
-        default="llama3.1-405b-instruct-fp8",
+        default="llama-4-scout",
         env="DEFAULT_MODEL"
     )
     LOG_LEVEL: str = Field(default="INFO", env="LOG_LEVEL")
+    SSH_KEY_NAME: str = Field(..., env="SSH_KEY_NAME")
 
     class Config:
         env_file = ".env"

@@ -17,7 +17,7 @@ client = OpenAI(
 )
 
 # Choose the model
-model = "llama3.1-405b-instruct-fp8"
+model = "llama-4-scout"
 
 # Create a multi-turn chat completion request
 chat_completion = client.chat.completions.create(
@@ -41,7 +41,7 @@ For general questions about Lambda AI, you can provide information about:
 
 When handling user queries:
 1. If the query is about managing Lambda Cloud instances, use the appropriate function calls
-2. If the query is about Lambda AI or general AI topics, provide informative responses directly
+2. If the query is about Lambda AI or general AI topics, provide informative responses directly. Do not use the functions to answer these questions. Just answer the question directly.
 3. Always be helpful, clear, and concise in your responses
 4. When executing functions, explain what you're doing and why
 5. If you encounter any errors, explain them clearly and suggest next steps
@@ -49,7 +49,7 @@ When handling user queries:
     }, 
     {
         "role": "user",
-        "content": "What is the price of a lambda instance?"
+        "content": "What are the currently available on-demand instances?"
     }],
     model=model,
     tools=[{"type": "function", "function": func} for func in LAMBDA_CLOUD_FUNCTIONS],
