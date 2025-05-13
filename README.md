@@ -4,7 +4,7 @@ This repo contains a Chat CLI application that allows you to interact with Lambd
 We use Lambda's Inference API with function calling to support this functionality.
 
 ## Prerequisites
-- Lambda API Key
+- Lambda API Key (you can create one in the [Lambda Cloud Dashboard](https://cloud.lambda.ai))
 
 ### Option 1: Run locally with Virtual Environment
 
