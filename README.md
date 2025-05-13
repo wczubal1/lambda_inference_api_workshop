@@ -76,8 +76,7 @@ docker run -it --env-file .env lambda-cloud-assistant
 
 Note: Make sure your `.env` file is in the same directory when running the Docker container.
 
-
-### Available Commands
+## Available Commands
 
 The assistant can help you with the following operations:
 - List your running on-demand instances
