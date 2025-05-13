@@ -16,13 +16,20 @@ The assistant can help you with the following operations:
 ## Prerequisites
 - Lambda API Key (you can create one in the [Lambda Cloud Dashboard](https://cloud.lambda.ai))
 
-## Setup your .env file
-1. Create a new `.env` file in the project root directory:
+## Initial Setup
+
+1. Clone the repository:
+```bash
+git clone https://github.com/LambdaLabsML/lambda_inference_api_function_calling_workshop.git
+cd lambda_inference_api_function_calling_workshop
+```
+
+2. Create and setup your `.env` file:
 ```bash
 touch .env
 ```
 
-2. Open the `.env` file in your preferred text editor and add the following configuration:
+3. Open the `.env` file in your preferred text editor and add the following configuration:
 ```env
 # Your Lambda API Keys (get these from https://cloud.lambda.ai)
 LAMBDA_INFERENCE_API_KEY=your_lambda_api_key
@@ -47,12 +54,6 @@ Make sure to replace:
 ## Installation (assumes you have setup the .env above)
 
 ### Option 1: Run locally with Virtual Environment
-
-1. Clone the repository:
-```bash
-git clone https://github.com/LambdaLabsML/lambda_inference_api_function_calling_workshop.git
-cd lambda_inference_api_function_calling_workshop
-```
 
 2. Create and activate a virtual environment:
 ```bash
