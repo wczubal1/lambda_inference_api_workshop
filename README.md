@@ -3,6 +3,16 @@
 This repo contains a Chat CLI application that allows you to interact with Lambda's Cloud API via chat.
 We use Lambda's Inference API with function calling to support this functionality.
 
+### Available Commands
+
+The assistant can help you with the following operations:
+- List your running on-demand instances
+- Create a new on-demand instance
+- Terminate a running on-demand instance
+- List available on-demand instances
+- Get specific on-demand instance details
+
+
 ## Prerequisites
 - Lambda API Key (you can create one in the [Lambda Cloud Dashboard](https://cloud.lambda.ai))
 
@@ -75,15 +85,6 @@ docker run -it --env-file .env lambda-cloud-assistant
 ```
 
 Note: Make sure your `.env` file is in the same directory when running the Docker container.
-
-## Available Commands
-
-The assistant can help you with the following operations:
-- List your running on-demand instances
-- Create a new on-demand instance
-- Terminate a running on-demand instance
-- List available on-demand instances
-- Get specific on-demand instance details
 
 ## Development
 
