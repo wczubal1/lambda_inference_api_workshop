@@ -3,7 +3,7 @@
 This repo contains a Chat CLI application that allows you to interact with Lambda's Cloud API via chat.
 We use Lambda's Inference API with function calling to support this functionality.
 
-### Available Commands
+### Available Commands:
 
 The assistant can help you with the following operations:
 - List your running on-demand instances
