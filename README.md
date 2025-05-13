@@ -13,7 +13,7 @@ We use Lambda's Inference API with function calling to support this functionalit
 1. Clone the repository:
 ```bash
 git clone https://github.com/LambdaLabsML/lambda_inference_api_function_calling_workshop.git
-cd lambda-cloud-assistant
+cd lambda_inference_api_function_calling_workshop
 ```
 
 2. Create and activate a virtual environment:
