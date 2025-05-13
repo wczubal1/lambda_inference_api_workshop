@@ -6,7 +6,35 @@ We use Lambda's Inference API with function calling to support this functionalit
 ## Prerequisites
 - Lambda API Key (you can create one in the [Lambda Cloud Dashboard](https://cloud.lambda.ai))
 
-## Installation
+## Setup your .env file
+1. Create a new `.env` file in the project root directory:
+```bash
+touch .env
+```
+
+2. Open the `.env` file in your preferred text editor and add the following configuration:
+```env
+# Your Lambda API Keys (get these from https://cloud.lambda.ai)
+LAMBDA_INFERENCE_API_KEY=your_lambda_api_key
+LAMBDA_CLOUD_API_KEY=your_lambda_api_key
+
+# API Endpoints (do not change these)
+LAMBDA_INFERENCE_API_BASE=https://api.lambda.ai/v1
+LAMBDA_CLOUD_API_BASE=https://cloud.lambda.ai/api/v1
+
+# Default configuration
+DEFAULT_MODEL=llama-4-scout
+LOG_LEVEL=INFO
+
+# SSH Key Name (create this in the Lambda Cloud Dashboard)
+SSH_KEY_NAME=your_ssh_key_name
+```
+
+Make sure to replace:
+- `your_lambda_api_key` with your actual Lambda API key
+- `your_ssh_key_name` with the name of your SSH key from the Lambda Cloud Dashboard
+
+## Installation (assumes you have setup the .env above)
 
 ### Option 1: Run locally with Virtual Environment
 
@@ -25,17 +53,6 @@ source .venv/bin/activate
 3. Install dependencies:
 ```bash
 pip install -r requirements.txt
-```
-
-4. Create a `.env` file in the project root with your API keys:
-```env
-LAMBDA_INFERENCE_API_KEY=your_lambda_api_key
-LAMBDA_CLOUD_API_KEY=your_lambda_api_key
-LAMBDA_INFERENCE_API_BASE=https://api.lambda.ai/v1
-LAMBDA_CLOUD_API_BASE=https://cloud.lambda.ai/api/v1
-DEFAULT_MODEL=llama-4-scout
-LOG_LEVEL=INFO
-SSH_KEY_NAME='' (add your SSH Key Name after creating it in the Lambda Cloud Dashboard)
 ```
 
 5. Start the chat interface:
