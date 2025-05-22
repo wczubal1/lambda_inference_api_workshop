@@ -17,7 +17,7 @@ class Settings(BaseSettings):
         env="LAMBDA_CLOUD_API_BASE"
     )
     DEFAULT_MODEL: str = Field(
-        default="llama-4-scout",
+        default="deepseek-r1-671b",
         env="DEFAULT_MODEL"
     )
     LOG_LEVEL: str = Field(default="INFO", env="LOG_LEVEL")
