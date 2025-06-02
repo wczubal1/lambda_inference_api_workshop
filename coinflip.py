@@ -17,7 +17,8 @@ if not LAMBDA_BASE_URL:
     raise ValueError("LAMBDA_INFERENCE_API_BASE environment variable not set or empty.")
 
 config_list = [{
-    "model": "deepseek-r1",
+    #"model": "deepseek-r1",
+    "model": "deepseek-v3-0324",
     "api_key": LAMBDA_API_KEY,
     "base_url": LAMBDA_BASE_URL,
     "api_type": "openai",
@@ -26,8 +27,8 @@ config_list = [{
 
 llm_config = {
     "config_list": config_list,
-    "seed": 42,
-    "temperature": 0.2, # Lowered temperature
+    #"seed": 42,
+    "temperature": 1.5, # Lowered temperature
     "max_tokens": 400,
 }
 

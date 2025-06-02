@@ -1,0 +1,158 @@
+--- Summary for: detailed_analyzed_coin_flipsDeepSeekV3NoSeed.csv ---
+Total simulations in this file: 100
+Flip Sequence, Frequency
+HTTHHTTHTH,6
+HTTHTTHHTT,6
+HTTHHTTHHT,5
+HTTHTHHTTH,5
+THHTHTTTHT,3
+HTTHTTTHHT,3
+HTTHHTTTHT,3
+HTHHTTHTHT,3
+HTTHTTHHTH,3
+HTHTTHHTTH,3
+HTTHTHHTHT,2
+HTTHHTHTTH,2
+HTTTHTHHTT,2
+HTTHTHTHTH,2
+THTTHHTTHT,2
+HTTHHTHTHT,2
+HHTHTTHHTT,2
+HTTHHTTTHH,2
+HHTHTTTHHT,2
+HTTTHTHHHT,2
+HTTHHTTHTT,2
+HTHTHTTTHH,2
+--------------------------
+Single Occurrences (Unique Sequences),36
+Multinomial Probability of this specific distribution of sequence frequencies: 6.1054e-162
+
+
+--- Summary for: detailed_analyzed_coin_flipsDSV3Temp1_5.csv ---
+Total simulations in this file: 100
+Flip Sequence, Frequency
+HTHTTHHTTH,6
+THHTHTTTHT,5
+HTTHHTTHTH,3
+HHTTHHTTHT,3
+HHTHTTTTHT,2
+HTTHTHHHTT,2
+HTTTHHTTHH,2
+HTHTTTHTHH,2
+HHTHTTTHTH,2
+THHTHTTHHT,2
+HTTHHTTTHH,2
+TTTHHTHHTT,2
+HHTTTHTHHT,2
+HTHTHHTTHT,2
+HTTHTTTHTH,2
+TTTHHTTTHT,2
+HTTHTHHTTT,2
+HTTHTTHTHT,2
+TTHTHHTTHT,2
+HTHTTHTHHT,2
+HHTHTTTHHT,2
+HTTHTHHTTH,2
+--------------------------
+Single Occurrences (Unique Sequences),47
+Multinomial Probability of this specific distribution of sequence frequencies: 1.0682e-155
+
+
+--- Summary for: detailed_analyzed_coin_flipsDSR1Temp1Embedded.csv ---
+Total simulations in this file: 100
+Flip Sequence, Frequency
+THTHTHTHHT,20
+HTTHTHTHTH,4
+TTHHTTHTTH,4
+THTHHTTHTH,3
+THTTHHTHTH,3
+HTHHTTTHTH,2
+HHTTHTTHHT,2
+HTHTTTHHHT,2
+HTHTTHHTTH,2
+HTTHTHHTTH,2
+TTHTHHTTHT,2
+THHTTHTHHT,2
+HHTTTHTTHT,2
+HTTHTHHTHT,2
+THHTHTTHTH,2
+TTHHTHTTHH,2
+THTTHHTTHH,2
+TTHHTTHTHT,2
+--------------------------
+Single Occurrences (Unique Sequences),40
+Multinomial Probability of this specific distribution of sequence frequencies: 2.1075e-170
+
+
+--- Summary for: detailed_analyzed_coin_flipsDSR1Temp1Final.csv ---
+Total simulations in this file: 100
+Flip Sequence, Frequency
+TTHHTTHTTH,5
+TTHHTHTTHT,4
+HHTTTHTHHT,4
+HHTTTHTHTH,4
+THHTHTTHHT,3
+TTHHTTHTHH,3
+HHTTTHTTHT,3
+HTHTTHTTHT,2
+THTTHHHTTH,2
+HTHTTTHHHT,2
+TTHTHHHTHT,2
+HTHTTHTHHT,2
+THTHTHTHHT,2
+TTHTHHTHTT,2
+THTTHHTTHT,2
+THHTHTTHTH,2
+HTHTTTHHTT,2
+HTHTTHHTTH,2
+HTTHTHHTTH,2
+--------------------------
+Single Occurrences (Unique Sequences),50
+Multinomial Probability of this specific distribution of sequence frequencies: 5.9344e-156
+
+
+--- Summary for: detailed_analyzed_coin_flipsDSR1Temp1_5Embedded.csv ---
+Total simulations in this file: 100
+Flip Sequence, Frequency
+THTHTHTHHT,18
+HTHTTHHTHT,4
+TTHHTTHHTH,3
+THTHHTTHTH,2
+THTTTHHTHH,2
+THHTHTTTHT,2
+THTTHHHTHT,2
+HHTTHTTHHT,2
+THTHTTHHTH,2
+HHTTHTTTHT,2
+TTHHTHTHHT,2
+TTHHTTTHHT,2
+--------------------------
+Single Occurrences (Unique Sequences),57
+Multinomial Probability of this specific distribution of sequence frequencies: 1.8452e-164
+
+
+--- Summary for: detailed_analyzed_coin_flipsDSR1Temp1_5Final.csv ---
+Total simulations in this file: 100
+Flip Sequence, Frequency
+THHTTTHTHH,3
+TTTHHHTTHT,2
+THTTHHTTHT,2
+TTTHHHTTTH,2
+HTTHTTHTHT,2
+TTHHTTHHTH,2
+HTHHTTTHHH,2
+HTTHTTTHHT,2
+HTTTHTHHTT,2
+TTHTTHHTTH,2
+HHTTHTTTHT,2
+HHTHTTTHHT,2
+HTHTTTHTTH,2
+HTHTTHTTTH,2
+HTTHHTTHHT,2
+HTHTTTHTHT,2
+HHTHTTTHTH,2
+--------------------------
+Single Occurrences (Unique Sequences),65
+Multinomial Probability of this specific distribution of sequence frequencies: 2.2150e-149
+
+
