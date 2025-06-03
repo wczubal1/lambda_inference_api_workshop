@@ -135,15 +135,24 @@ def calculate_multinomial_prob_of_distribution(counts_vector, total_trials):
         return 0.0 # Or handle error as appropriate
 
 def main():
+    # Define results directory
+    results_dir = "results"
+    
+    # Ensure the results directory exists
+    os.makedirs(results_dir, exist_ok=True)
+
+    # Input files are now in the results directory
     file_paths = [
-        r"D:\Witold\Documents\Computing\LLMAgentsOfficial\Hackathon2\Lambda\lambda_inference_api_function_calling_workshop\detailed_analyzed_coin_flipsDeepSeekV3NoSeed.csv",
-        r"D:\Witold\Documents\Computing\LLMAgentsOfficial\Hackathon2\Lambda\lambda_inference_api_function_calling_workshop\detailed_analyzed_coin_flipsDSV3Temp1_5.csv",
-        r"D:\Witold\Documents\Computing\LLMAgentsOfficial\Hackathon2\Lambda\lambda_inference_api_function_calling_workshop\detailed_analyzed_coin_flipsDSR1Temp1Embedded.csv",
-        r"D:\Witold\Documents\Computing\LLMAgentsOfficial\Hackathon2\Lambda\lambda_inference_api_function_calling_workshop\detailed_analyzed_coin_flipsDSR1Temp1Final.csv",
-        r"D:\Witold\Documents\Computing\LLMAgentsOfficial\Hackathon2\Lambda\lambda_inference_api_function_calling_workshop\detailed_analyzed_coin_flipsDSR1Temp1_5Embedded.csv",
-        r"D:\Witold\Documents\Computing\LLMAgentsOfficial\Hackathon2\Lambda\lambda_inference_api_function_calling_workshop\detailed_analyzed_coin_flipsDSR1Temp1_5Final.csv"
+        os.path.join(results_dir, "detailed_analyzed_coin_flipsDeepSeekV3NoSeed.csv"),
+        os.path.join(results_dir, "detailed_analyzed_coin_flipsDSV3Temp1_5.csv"),
+        os.path.join(results_dir, "detailed_analyzed_coin_flipsDSR1Temp1Embedded.csv"),
+        os.path.join(results_dir, "detailed_analyzed_coin_flipsDSR1Temp1Final.csv"),
+        os.path.join(results_dir, "detailed_analyzed_coin_flipsDSR1Temp1_5Embedded.csv"),
+        os.path.join(results_dir, "detailed_analyzed_coin_flipsDSR1Temp1_5Final.csv")
     ]
-    output_summary_file = "all_files_frequency_and_multinomial_summary.txt"
+    
+    # Output file is also in the results directory
+    output_summary_file = os.path.join(results_dir, "all_files_frequency_and_multinomial_summary.txt")
 
     # Pre-generate all 1024 possible sequences once if not already global
     # (It's global: ALL_10_FLIP_SEQUENCES)

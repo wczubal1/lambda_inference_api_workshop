@@ -198,51 +198,57 @@ def run_coin_flip_simulation():
 
     # --- Save results to separate files ---
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    results_dir = "results"  # Define the results directory
+    os.makedirs(results_dir, exist_ok=True)  # Create the directory if it doesn't exist
+
+    # Helper function to save results
+    def save_results(filename, content):
+        filepath = os.path.join(results_dir, filename)
+        with open(filepath, "w", encoding="utf-8") as f:
+            f.write(content)
+        print(f"Results saved to {filepath}")
 
     # File for Prioritized Extraction Results
     filename_prioritized = f"coin_flips_prioritized_{timestamp}.txt"
-    with open(filename_prioritized, "w", encoding="utf-8") as f_prioritized:
-        f_prioritized.write(f"Coin Flip Simulation Results (Prioritized Extraction)\n")
-        f_prioritized.write(f"Timestamp: {timestamp}\n")
-        f_prioritized.write(f"Total Simulations Attempted: {num_simulations}\n")
-        f_prioritized.write("==================================================\n\n")
-        f_prioritized.write("Validated 10-flip sequences (Prioritized Logic):\n")
-        valid_count_prioritized = 0
-        for idx, seq in enumerate(results_prioritized_extraction):
-            if len(seq) == 10 and all(c in 'HT' for c in seq):
-                f_prioritized.write(f"Simulation {idx+1} sequence: {seq}\n")
-                valid_count_prioritized +=1
-            else:
-                f_prioritized.write(f"Simulation {idx+1} sequence: INVALID_OR_EMPTY ('{seq}')\n") # Log invalid ones too
-        print(f"\nResults (Prioritized Extraction) saved to {filename_prioritized} ({valid_count_prioritized} valid sequences)")
+    content_prioritized = f"Coin Flip Simulation Results (Prioritized Extraction)\n"
+    content_prioritized += f"Timestamp: {timestamp}\n"
+    content_prioritized += f"Total Simulations Attempted: {num_simulations}\n"
+    content_prioritized += "==================================================\n\n"
+    content_prioritized += "Validated 10-flip sequences (Prioritized Logic):\n"
+    valid_count_prioritized = 0
+    for idx, seq in enumerate(results_prioritized_extraction):
+        if len(seq) == 10 and all(c in 'HT' for c in seq):
+            content_prioritized += f"Simulation {idx+1} sequence: {seq}\n"
+            valid_count_prioritized +=1
+        else:
+            content_prioritized += f"Simulation {idx+1} sequence: INVALID_OR_EMPTY ('{seq}')\n" # Log invalid ones too
+    save_results(filename_prioritized, content_prioritized)
 
     # File for Embedded-Only (Regex) Extraction Results
     filename_embedded = f"coin_flips_embedded_only_{timestamp}.txt"
-    with open(filename_embedded, "w", encoding="utf-8") as f_embedded:
-        f_embedded.write(f"Coin Flip Simulation Results (Embedded-Only Regex Extraction)\n")
-        f_embedded.write(f"Timestamp: {timestamp}\n")
-        f_embedded.write(f"Total Simulations Attempted: {num_simulations}\n")
-        f_embedded.write("=========================================================\n\n")
-        f_embedded.write("Validated 10-flip sequences (Embedded-Only Regex Logic):\n")
-        valid_count_embedded = 0
-        for idx, seq in enumerate(results_embedded_only_extraction):
-            if len(seq) == 10 and all(c in 'HT' for c in seq):
-                f_embedded.write(f"Simulation {idx+1} sequence: {seq}\n")
-                valid_count_embedded += 1
-            else:
-                f_embedded.write(f"Simulation {idx+1} sequence: INVALID_OR_EMPTY ('{seq}')\n")
-        print(f"Results (Embedded-Only Extraction) saved to {filename_embedded} ({valid_count_embedded} valid sequences)")
+    content_embedded = f"Coin Flip Simulation Results (Embedded-Only Regex Extraction)\n"
+    content_embedded += f"Timestamp: {timestamp}\n"
+    content_embedded += f"Total Simulations Attempted: {num_simulations}\n"
+    content_embedded += "=========================================================\n\n"
+    content_embedded += "Validated 10-flip sequences (Embedded-Only Regex Logic):\n"
+    valid_count_embedded = 0
+    for idx, seq in enumerate(results_embedded_only_extraction):
+        if len(seq) == 10 and all(c in 'HT' for c in seq):
+            content_embedded += f"Simulation {idx+1} sequence: {seq}\n"
+            valid_count_embedded += 1
+        else:
+            content_embedded += f"Simulation {idx+1} sequence: INVALID_OR_EMPTY ('{seq}')\n"
+    save_results(filename_embedded, content_embedded)
 
     # Optionally, save the raw LLM responses too
     filename_raw = f"coin_flips_raw_llm_outputs_{timestamp}.txt"
-    with open(filename_raw, "w", encoding="utf-8") as f_raw:
-        f_raw.write(f"Raw LLM Outputs (after TERMINATE removal)\n")
-        f_raw.write(f"Timestamp: {timestamp}\n")
-        f_raw.write(f"Total Simulations: {num_simulations}\n")
-        f_raw.write("=========================================\n\n")
-        for idx, raw_output in enumerate(all_raw_responses):
-            f_raw.write(f"--- Simulation {idx+1} Raw Output ---\n{raw_output}\n-----------------------------------\n\n")
-    print(f"Raw LLM outputs saved to {filename_raw}")
+    content_raw = f"Raw LLM Outputs (after TERMINATE removal)\n"
+    content_raw += f"Timestamp: {timestamp}\n"
+    content_raw += f"Total Simulations: {num_simulations}\n"
+    content_raw += "=========================================\n\n"
+    for idx, raw_output in enumerate(all_raw_responses):
+        content_raw += f"--- Simulation {idx+1} Raw Output ---\n{raw_output}\n-----------------------------------\n\n"
+    save_results(filename_raw, content_raw)
 
 
 if __name__ == "__main__":

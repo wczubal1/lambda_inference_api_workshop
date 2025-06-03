@@ -143,8 +143,11 @@ def main():
     Main function to orchestrate reading, parsing, analyzing, and plotting.
     """
     # Use a raw string or forward slashes for Windows paths
-    file_to_analyze = r"D:\Witold\Documents\Computing\LLMAgentsOfficial\Hackathon2\Lambda\lambda_inference_api_function_calling_workshop\coin_flips_prioritized_20250530_205248DSR1Temp1_5.txt" 
+    file_to_analyze = r"D:\Witold\Documents\Computing\LLMAgentsOfficial\Hackathon2\Lambda\lambda_inference_api_function_calling_workshop\results\coin_flips_prioritized_20250530_205248DSR1Temp1_5.txt" 
     
+    # Define results directory
+    results_dir = "results"
+
     if not os.path.exists(file_to_analyze):
         print(f"The file '{file_to_analyze}' does not exist. Please check the path.")
         return
@@ -162,8 +165,10 @@ def main():
             print("\nDetailed Analysis DataFrame (Head):")
             print(detailed_results_df.head().to_string())
 
-            output_detailed_csv = "detailed_analyzed_coin_flips.csv"
+            output_detailed_csv = os.path.join(results_dir, "detailed_analyzed_coin_flips.csv")
             try:
+                # Create the results directory if it doesn't exist
+                os.makedirs(results_dir, exist_ok=True)
                 detailed_results_df.to_csv(output_detailed_csv, index=False)
                 print(f"\nDetailed analysis saved to {output_detailed_csv}")
             except Exception as e:

@@ -165,7 +165,14 @@ def run_coin_flip_simulation():
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         filename = f"coin_flip_results_{timestamp}.txt"
         
-        with open(filename, "w", encoding="utf-8") as f:
+        # Ensure the "results" directory exists
+        results_dir = "results"
+        if not os.path.exists(results_dir):
+            os.makedirs(results_dir)
+        
+        filepath = os.path.join(results_dir, filename) # Corrected path
+        
+        with open(filepath, "w", encoding="utf-8") as f:
             f.write("Coin Flip Simulation Results\n")
             f.write("==========================\n\n")
             for idx, full_msg in enumerate(full_responses, 1):
@@ -186,7 +193,7 @@ def run_coin_flip_simulation():
             f.write(f"Total heads: {total_heads}\n")
             f.write(f"Heads percentage: {heads_percentage:.2f}%\n")
         
-        print(f"\nResults saved to {filename}")
+        print(f"\nResults saved to {filepath}")
     else:
         print("\nNo simulation responses to save.")
 
