@@ -1,6 +1,6 @@
 # This is repository for Witold Czubala for Agent X competition
 
-#This was run on Lambda inference using API. If you plan to run it on Lambda you just need your API keys otherwise you need to reconfigure connection is working with different provider
+#This was run on Lambda inference using API. If you plan to run it on Lambda you just need your API keys otherwise you need to reconfigure connection to work with different provider
 
 
 ## Prerequisites
